@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methods in Javascript</title>
+</head>
+
+<body>
+    <script>
+        //  Constructors(Class Constructor) , Inheritance(Multi-level) , Polymorphism , Encapsulation , Abstraction.
+
+        // Constructors
+
+        class Person{
+            constructor(name,age){
+                this.name = name;
+                this.age = age;
+            }
+
+            introduce(){
+                return `Q1) Hey, My name is ${this.name} and i am ${this.age} years old <br/>`;
+            }
+
+            celebrate(){
+                this.age = this.age + 1;
+                return `Q1 (2))Happy Birthday to you ${this.name} , you are ${this.age} years old now`;
+            }
+        }
+
+        let Person1 = new Person("Megh",18);
+
+        document.write(Person1.introduce());
+
+        document.write(Person1.celebrate());
+
+
+
+
+
+
+        //Inheritance(Multi-level)
+
+        class Bicycle{
+            constructor(Pedals,ManualPower){
+                this.Pedals = Pedals;
+                this.ManualPower = ManualPower;
+            }
+        }
+
+        class MotorBike extends Bicycle{
+            constructor(Engine,Pedals,ManualPower){
+                super(Pedals,ManualPower);
+                this.Engine = Engine;
+            }
+        }
+
+        class ElectricBike extends MotorBike{
+            constructor(ElectricMotor,Battery,Engine,Pedals,ManualPower){
+                super(Engine,Pedals,ManualPower);
+                this.ElectricMotor = ElectricMotor;
+                this.Battery = Battery;
+            }
+
+            Display(){
+                document.write(`Bicycle specs are as follows<br/> ${this.ElectricMotor}<br/>  ${this.Battery}<br/>  ${this.Engine}<br/>  ${this.Pedals} <br/> ${this.ManualPower} `);
+            }
+        }
+
+        let MyBicycle = new ElectricBike("OLA" , "3000WATT" , "V8" , 16 , "4000HP");
+
+        document.write(MyBicycle.Display());
+
+
+
+
+
+
+        //Polymorphism(All the methods name are same but class name are different and are extends by parent class and than encapsulate)
+
+        class Animal{
+            Speaks(){
+                document.write("     Did you Heared Sounds of Animals?     ");
+            }
+        }
+
+        class Cat extends Animal{
+            Speaks(){
+                document.write("Meow!       <br/>");
+            }
+        }
+
+        class Dog extends Animal{
+            Speaks(){
+                document.write("      Barks!       <br/>");
+            }
+        }
+
+        function AnimalSpeaks(Animal){
+            document.write(Animal.Speaks());
+        }
+
+        let MyCat = new Cat();
+        let MyDog = new Dog();
+        let S = new Animal();
+
+        document.write(AnimalSpeaks(MyCat));
+        document.write(AnimalSpeaks(MyDog));
+        document.write(AnimalSpeaks(S));
+
+        
+
+
+        // Encapsulation
+
+        class Exam{
+            constructor(Subject,MaxMarks){
+                this.Subject = Subject;
+                this.MaxMarks = MaxMarks;
+                this.MarksObtained = 0;
+            }
+
+            SetMarks(Marks){
+                if(Marks >= 0 && Marks <= this.MaxMarks)
+                {
+                    this.MarksObtained = Marks;
+                }
+                else{
+                    document.write("Invalid Marks!");
+                }
+            }
+
+            GetMarks(){
+                return this.MarksObtained;
+            }
+
+            GetSubject(){
+                return this.Subject;
+            }
+
+            GetPercentage(){
+                return (this.MarksObtained / this.MaxMarks) * 100;
+            }
+        }
+
+        let MyExam = new Exam("COA <br/>" , 60);
+
+        MyExam.SetMarks(54);
+
+            document.write("Subject:- ", MyExam.GetSubject());
+            document.write("<br/>");
+            document.write("Marks:- ", MyExam.GetMarks());
+            document.write("<br/>");
+            document.write("Percentage:- ", MyExam.GetPercentage());
+
+
+            // Abstraction//////
+
+            class Vehicle {
+            constructor(Name, Model, Year) {
+                this.Name = Name;
+                this.Model = Model;
+                this.Year = Year;
+            }
+
+            StartEngine() {
+                document.write("<br/>Car Engine has been Started");
+            }
+        }
+
+
+        class Car extends Vehicle {
+            constructor(Name, Model, Year, Doors) {
+                super(Name, Model, Year);
+                this.Doors = Doors;
+            }
+        }
+
+
+        class MotorCycle extends Vehicle {
+            constructor(Name, Model, Year, Cylinders) {
+                super(Name, Model, Year);
+                this.Cylinders = Cylinders;
+            }
+        }
+
+
+        let MyCar = new Car("Supra", "D8", 2005 , 2);
+        let MyBike = new MotorCycle("Kawasaki", "200D", 2003, 3);
+
+        document.write("<br/><br/>///Cars/// <br/>");
+        
+        document.write("Name:- ",MyCar.Name);
+        document.write("<br/> Model:- ",MyCar.Model);
+        document.write("<br/> Year:- ",MyCar.Year);
+        document.write("<br/>Doors:- ",MyCar.Doors);
+        
+        MyCar.StartEngine();
+        
+
+    </script>
+</body>
+
+</html>
